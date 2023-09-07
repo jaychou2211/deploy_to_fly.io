@@ -10,7 +10,7 @@ primary_region = "hkg"
   image = "registry.fly.io/empty-river-8206:v0"
 
 [http_service]
-  internal_port = ${{port}}
+  internal_port = {{port}}
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
