@@ -12,7 +12,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: |
           sed -i 's/{{port}}/'"PORT"'/g' fly.toml 
-          fly deploy
+          flyctl deploy
         env:
           PORT: ${{ env.PORT }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
