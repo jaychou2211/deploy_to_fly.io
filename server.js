@@ -13,6 +13,11 @@ app.get('/hello', (req, res) => {
     res.send('hello');
 })
 
+app.get('/A', (req, res) => {
+    console.log('process.env.A : ', process.env.A);
+    res.send(process.env.A);
+})
+
 app.listen(8080, () => {
     console.log('listening on port 8080');
 })
