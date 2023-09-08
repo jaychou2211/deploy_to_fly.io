@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 
 const port = process.env.PORT || 8080;
 
@@ -13,7 +14,7 @@ app.get('/hello', (req, res) => {
     res.send('hello');
 })
 
-app.get('/A', (req, res) => {
+app.get('/a', (req, res) => {
     console.log('process.env.A : ', process.env.A);
     res.send(process.env.A);
 })

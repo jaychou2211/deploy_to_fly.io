@@ -6,8 +6,12 @@
 app = "empty-river-8206"
 primary_region = "hkg"
 
+[env]
+  A = {{A}}
+
 [build]
   image = "registry.fly.io/empty-river-8206:v0"
+
 
 [http_service]
   internal_port = {{port}}
