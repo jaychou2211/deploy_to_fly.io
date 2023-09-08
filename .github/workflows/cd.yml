@@ -13,7 +13,7 @@ jobs:
       - name: Print REPO_PORT
         run: echo "REPO_PORT is ${{ vars.PORT }}"
       - run: |
-          sed -i "s/{{port}}/${PORT}/g" fly.toml 
+          sed -i "s/{{port}}/$PORT/g" fly.toml 
           echo "REPO_PORT is $PORT"
           flyctl deploy
         env:
