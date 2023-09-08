@@ -20,6 +20,9 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: Authenticate to push our image to Fly
+        run : flyctl auth docker
+      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -29,19 +32,27 @@ jobs:
           tags: registry.fly.io/empty-river-8206:latest    
 
   deploy:
-    name: Deploy app
+    name: Deploy to Fly.io
+    needs: build
     runs-on: ubuntu-latest
-    environment: PRODUCTION
+
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-
-      - run: |
-          sed -i "s/{{port}}/$PORT/g" fly.toml 
-          sed -i "s/{{A}}/$A/g" fly.toml 
-          flyctl deploy
+      - 
+        name: Checkout code
+        uses: actions/checkout@v3
+      - 
+        name: Setup Flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - 
+        name: Replace env variables
+        run: |
+          sed -i "s/{{port}}/$PORT/g" fly.toml
+          sed -i "s/{{A}}/$A/g" fly.toml
         env:
           PORT: ${{ vars.PORT }}
-          A : ${{ vars.A }}
+          A: ${{ vars.A }}
+      - 
+        name: Deploy to Fly.io
+        run: flyctl deploy
+        env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
