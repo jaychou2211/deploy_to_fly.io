@@ -25,13 +25,10 @@ jobs:
         name: Setup Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
       -
-        name: Log in to Fly
-        run: flyctl auth token -t=$FLY_API_TOKEN
+        name: Authenticate to push our image to Fly
+        run : flyctl auth docker -t=$FLY_API_TOKEN
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      -
-        name: Authenticate to push our image to Fly
-        run : flyctl auth docker
       -
         name: Build and push
         uses: docker/build-push-action@v4
