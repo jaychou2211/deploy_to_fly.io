@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/hello', (req, res) => {
-    console.log('someone made a request to /hello endpoint!', process.env.A);
+    console.log('someone made a request to /hello endpoint!!!', process.env.A);
     console.log('process.env.A : ', process.env.A);
     res.send('hello');
 })
