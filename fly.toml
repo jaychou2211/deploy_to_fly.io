@@ -7,7 +7,7 @@ app = "empty-river-8206"
 primary_region = "hkg"
 
 [env]
-  A = "{{A}}"
+  A = "{{A}}369"
 
 [build]
   image = "registry.fly.io/empty-river-8206:latest"
